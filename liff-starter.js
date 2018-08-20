@@ -26,17 +26,16 @@ function initializeApp(data) {
 
     // sendMessages call
     document.getElementById('sendmessagebutton').addEventListener('click', function () {
+        output = document.getElementById("output");
+        textbox = document.getElementById("input");
+        output.innerText = textbox.value;
         liff.sendMessages([{
             type: 'text',
-            text: "You've successfully sent a message! Hooray!"
-        }, {
-            type: 'sticker',
-            packageId: '2',
-            stickerId: '144'
+            text: output.textContent
         }]).then(function () {
-            window.alert("Message sent");
+            liff.closeWindow()
         }).catch(function (error) {
-            window.alert("Error sending message: " + error);
+            window.alert("エラーは次のようになります: " + error);
         });
     });
 
